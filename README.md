@@ -1,2 +1,2 @@
 # School-Work
-Several assignments and class works done during university education
+Includes several assignments and class works that done during university period
