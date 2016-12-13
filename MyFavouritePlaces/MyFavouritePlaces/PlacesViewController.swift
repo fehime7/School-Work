@@ -16,6 +16,11 @@ class PlacesViewController: UITableViewController {
     
     @IBOutlet var table: UITableView!
     
+    @IBAction func addBarItem(_ sender: AnyObject) {
+        
+        print("Hellooooo******")
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

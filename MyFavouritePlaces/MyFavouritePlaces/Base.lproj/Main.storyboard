@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tuT-gN-Nuk" id="Q07-XG-bzB">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -33,6 +33,7 @@
                     <navigationItem key="navigationItem" title="Places" id="wrs-fA-6Fk">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="e0n-gT-V3Z" userLabel="Map">
                             <connections>
+                                <action selector="addBarItem:" destination="5GZ-Gx-Tog" id="eVp-wB-gDQ"/>
                                 <segue destination="BYZ-38-t0r" kind="show" identifier="to Map" id="Pga-zw-9Ck"/>
                             </connections>
                         </barButtonItem>
