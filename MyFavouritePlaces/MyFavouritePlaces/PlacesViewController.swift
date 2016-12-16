@@ -12,25 +12,27 @@ var currentPlace = -1
 
 var places = [Dictionary<String, String>()]
 
+var places2 : [Place] = []
+
+//var tablePlaces = [NSManagedObject]()
+
 class PlacesViewController: UITableViewController {
     
     @IBOutlet var table: UITableView!
     
-    @IBAction func addBarItem(_ sender: AnyObject) {
+    @IBOutlet weak var barItem: UIBarButtonItem!
+    
+    @IBAction func addItem(_ sender: AnyObject) {
+        print("Helloooooo")
         
-        print("Hellooooo******")
-
     }
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,8 +55,9 @@ class PlacesViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+   
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
+       
         if places[indexPath.row]["name"] != nil {
             cell.textLabel?.text = places[indexPath.row]["name"]
         }
@@ -73,7 +76,7 @@ class PlacesViewController: UITableViewController {
             places.append(["name":"Ashton Building", "lat": "53.406566", "lon": "-2.966531"])
         }
         
-        currentPlace = -1
+        //currentPlace = -1
         table.reloadData()
     }
     
@@ -86,32 +89,38 @@ class PlacesViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+            places.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        }
+        table.reloadData()
     }
-    */
+    
 
-    /*
+    
     // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to toIndexPath: IndexPath)
+     {
+        var itemToMove = places[fromIndexPath.row]
+        places.remove(at: fromIndexPath.row)
+        places.insert(itemToMove, at: toIndexPath.row)
+        
 
     }
-    */
+    
 
-    /*
+    
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
-    */
+
 
     /*
     // MARK: - Navigation

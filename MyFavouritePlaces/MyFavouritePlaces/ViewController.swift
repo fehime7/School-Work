@@ -8,11 +8,14 @@
 
 import UIKit
 import MapKit
+//import CoreData
 
 class ViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var map: MKMapView!
     
+  //  let appDelegate = UIApplication.shared.delegate as! AppDelegate
+  //  var context: NSManagedObjectContext?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +49,15 @@ class ViewController: UIViewController, MKMapViewDelegate {
     }
     
     func longpress(gestureRecognizer: UIGestureRecognizer) {
+        
+       // let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+       // let place = Place(context: context)
+        
+      //  let newPin = NSEntityDescription.insertNewObject(forEntityName: "Place", into: context!)
+
+        
+        
         if gestureRecognizer.state == UIGestureRecognizerState.began {
             print("===\nLong Press\n===")
             let touchPoint = gestureRecognizer.location(in: self.map)
@@ -76,6 +88,35 @@ class ViewController: UIViewController, MKMapViewDelegate {
                     self.map.addAnnotation(annotation)
                     places.append(["name":title, "lat": String(newCoordinate.latitude),
                                    "lon": String(newCoordinate.longitude)])
+                    
+                  //  UserDefaults.standard.set(title, forKey: "name")
+                    //UserDefaults.standard.set(String(newCoordinate.latitude), forKey: "lat")
+                    //UserDefaults.standard.set(String(newCoordinate.longitude), forKey: "lon")
+
+                   
+                   // place.name = title
+                   // place.lat = String(newCoordinate.longitude)
+                   // place.lon = String(newCoordinate.longitude)
+                    
+                    //(UIApplication.shared.delegate as! AppDelegate).saveContext()
+                    
+                   /*
+                    newPin.setValue(title, forKey: "name")
+                    newPin.setValue(String(newCoordinate.latitude), forKey: "lat")
+                    newPin.setValue(String(newCoordinate.longitude), forKey: "lon")
+                    
+                    do {
+                        try self.context?.save()
+                        
+                        print("Saved")
+                        
+                        
+                    } catch {
+                        print("there was an error")
+                    }
+                     */
+
+                    
             }) }
     }
     
