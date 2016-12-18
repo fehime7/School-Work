@@ -10,15 +10,15 @@ import UIKit
 import MapKit
 
 var searchEntry = ""
+var filterentry = ""
 var selection = -1
 var imageString = ""
+var addressString = ""
 var infoString = ""
-var jsonDictionary = [Dictionary<String, String>()]
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var locationManager = CLLocationManager()
-    
     var places = [Dictionary<String, String>()]
   
 
@@ -26,18 +26,42 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var table: UITableView!
     
+    @IBAction func filter(_ sender: AnyObject) {
+        
+        let alert2 = UIAlertController(title: "Fiter Search",
+                                      message: "Write the specific key for places",
+                                      preferredStyle: .alert)
+        
+        let filterAction = UIAlertAction(title: "Filter",
+                                         style: .default,
+                                         handler: { (action:UIAlertAction) -> Void in
+                                            
+                                            let textField = alert2.textFields!.first
+                                            searchEntry = textField!.text!
+                                            print(searchEntry)
+                                            self.apiFilter()
+                                            self.table.reloadData()
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .default) { (action: UIAlertAction) -> Void in
+        }
+        
+        alert2.addTextField {
+            (textField: UITextField) -> Void in
+        }
+        
+        alert2.addAction(filterAction)
+        alert2.addAction(cancelAction)
+        
+        present(alert2, animated: true, completion: nil)
+        
+    }
     
     @IBAction func search(_ sender: AnyObject) {
         
-        /*
-        if searchEntry != "" {
-            for i in 0...5 {
-                places.remove(at: i)
-            }
-        }
-        */
         
-        let alert = UIAlertController(title: "Place Filter",
+        let alert = UIAlertController(title: "Place Search",
                                       message: "Write the specific type for places",
                                       preferredStyle: .alert)
         
@@ -67,14 +91,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    
     func apiConnection(){
         
         places.remove(at: 0)
-        print(places)
-        print("first step")
         
-        let url = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.406566,%20-2.966531&radius=1000&type=\(searchEntry)&keyword=\(searchEntry)&key=%20AIzaSyDTh2Pj5a3p2f5fjWXRg8rpOWraXd9VDiU")!
+        let url = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.406566,%20-2.966531&radius=1000&type=\(searchEntry)&keyword=establishment&key=AIzaSyDTh2Pj5a3p2f5fjWXRg8rpOWraXd9VDiU")!
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
@@ -85,28 +106,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                     do {
                         let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-                        print(self.places)
-                        print("secondstep")
-                        
-                        for i in 0...5{
-                          /*
-                            if let firstArray = jsonResult["results"] as? NSArray {
-                                if let secondArray = (firstArray[i] as? NSDictionary)?["name"] as? String  {
-                                    
-                                    print(secondArray)
-                                    self.places.append(["name":secondArray])
-                                    print(self.places)
-                                   
-                                   // let annotation = MKPointAnnotation()
-                                   // annotation.coordinate = coordinate
-                                   // self.map.addAnnotation(annotation)
-                                    self.table.reloadData()
-                                }
-                                
-                            }*/
-                            if let firstArray = jsonResult["results"] as? NSArray {
+                       
+                        if let firstArray = jsonResult["results"] as? NSArray {
+                            for i in 0...firstArray.count/2{
                                 if let secondArray = (firstArray[i] as? NSDictionary) {
                                     let name = secondArray["name"] as? String
+                                    let vicinity = secondArray["vicinity"] as? String
+                                    let icon = secondArray["icon"] as? String
+                                    let rating = secondArray["rating"] as? Double
+                                    print(rating)
+                                    
                                     let lat2 = (secondArray["geometry"] as? NSDictionary)
                                     let lat1 = lat2?["location"] as? NSDictionary
                                     let lat = lat1?["lat"] as? Double
@@ -115,12 +124,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                     let lon1 = lon2?["location"] as? NSDictionary
                                     let lon = lon1?["lng"] as? Double
                                     
-                                   // let lon = ((secondArray["geometry"] as? NSArray)?[0] as? NSArray)?["lon"] as? Double
-                                    
-                                    print(name)
-                                    print(lat)
-                                    //print(lon)
-                                    self.places.append(["name": name!])
+                                    self.places.append(["name": name!, "vicinity": vicinity!, "icon": icon!])
                                     print(self.places)
                                     self.table.reloadData()
                                     
@@ -148,6 +152,66 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         task.resume()
         
+    }
+    
+    func apiFilter()  {
+        
+        let url = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.406566,%20-2.966531&radius=1000&type=\(searchEntry)&keyword=\(filterentry)&key=AIzaSyDTh2Pj5a3p2f5fjWXRg8rpOWraXd9VDiU")!
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error)
+                
+            } else {
+                if let urlContent = data {
+                    
+                    do {
+                        let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                        
+                        if let firstArray = jsonResult["results"] as? NSArray {
+                            for i in 0...firstArray.count/2{
+                                if let secondArray = (firstArray[i] as? NSDictionary) {
+                                    let name = secondArray["name"] as? String
+                                    let vicinity = secondArray["vicinity"] as? String
+                                    let rating = secondArray["rating"] as? Double
+                                    print(rating)
+                                    
+                                    let lat2 = (secondArray["geometry"] as? NSDictionary)
+                                    let lat1 = lat2?["location"] as? NSDictionary
+                                    let lat = lat1?["lat"] as? Double
+                                    
+                                    let lon2 = (secondArray["geometry"] as? NSDictionary)
+                                    let lon1 = lon2?["location"] as? NSDictionary
+                                    let lon = lon1?["lng"] as? Double
+                                    
+                                    self.places.append(["name": name!, "vicinity": vicinity!])
+                                    print(self.places)
+                                    self.table.reloadData()
+                                    
+                                    let coordinate = CLLocationCoordinate2D(latitude: lat! , longitude: lon!)
+                                    let annotation = MKPointAnnotation()
+                                    annotation.coordinate = coordinate
+                                    self.map.addAnnotation(annotation)
+                                    annotation.title = name
+                                    self.table.reloadData()
+                                    
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                        
+                    } catch {
+                        print("======\nJSON processing Failed\n=======")
+                    }
+                    
+                }
+            }
+        }
+        
+        task.resume()
+
         
     }
     
@@ -158,8 +222,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         table.delegate = self
         table.dataSource = self
         
-        print(places)
-        
         if (CLLocationManager.locationServicesEnabled())
         {
             locationManager = CLLocationManager()
@@ -169,6 +231,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             locationManager.startUpdatingLocation()
             
         }
+        
+        let latitude = 53.406566
+        let longitude = -2.966531
+        let coordinate = CLLocationCoordinate2D(latitude: latitude , longitude: longitude)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        annotation.title = "You are here!"
+        self.map.addAnnotation(annotation)
 
     }
     
@@ -207,13 +277,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selection = indexPath.row
-        infoString = places[selection]["name"]!
-            //+ places[selection]["lat"]! + places[selection]["lon"]!
+        infoString = places[selection]["name"]! 
+        addressString = places[selection]["vicinity"]!
+        imageString = places[selection]["icon"]!
         
         performSegue(withIdentifier: "to Details", sender: nil)
     }
     
-   /*
+   
+    /*
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         return tableView.dequeueReusableHeaderFooterView(withIdentifier: "search")
@@ -237,16 +309,10 @@ extension ViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
-        let latitude = 53.406566
-        let longitude = -2.966531
-        let span = MKCoordinateSpanMake(0.008, 0.008)
+        let span = MKCoordinateSpanMake(0.02, 0.02)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         map.setRegion(region, animated: true)
-        let coordinate = CLLocationCoordinate2D(latitude: latitude , longitude: longitude)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        annotation.title = "You are here!"
-        self.map.addAnnotation(annotation)
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
