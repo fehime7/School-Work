@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocationOfPlaces/ViewController.swift"
-            timestampString = "503733517.59023"
+            timestampString = "503758984.452496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "search(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -102,11 +102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocationOfPlaces/ViewController.swift"
-            timestampString = "503737752.645458"
+            timestampString = "503758984.452496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -118,11 +118,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocationOfPlaces/ViewController.swift"
-            timestampString = "503733517.59023"
+            timestampString = "503758984.452496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "apiConnection()"
             landmarkType = "7">
          </BreakpointContent>
@@ -134,13 +134,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocationOfPlaces/ViewController.swift"
-            timestampString = "503730327.681868"
+            timestampString = "503756812.030126"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "ViewController"
             landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocationOfPlaces/ViewController.swift"
+            timestampString = "503761455.11877"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "apiFilter()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LocationOfPlaces.ViewController.(apiFilter () -&gt; ()).(closure #1)"
+                  moduleName = "LocationOfPlaces"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fggi/School-Work/LocationOfPlaces/LocationOfPlaces/ViewController.swift"
+                  timestampString = "503756551.482116"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "998">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LocationOfPlaces.ViewController.(apiFilter () -&gt; ()).(closure #1)"
+                  moduleName = "LocationOfPlaces"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fggi/School-Work/LocationOfPlaces/LocationOfPlaces/ViewController.swift"
+                  timestampString = "503756551.484991"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "2802">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

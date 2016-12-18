@@ -12,6 +12,7 @@ import MapKit
 var searchEntry = ""
 var filterentry = ""
 var selection = -1
+var control = 0
 var imageString = ""
 var addressString = ""
 var infoString = ""
@@ -27,6 +28,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func filter(_ sender: AnyObject) {
         
+        control = 2
+        
         let alert2 = UIAlertController(title: "Filter ",
                                        message: "Write the specific key for places",
                                        preferredStyle: .alert)
@@ -36,8 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                          handler: { (action:UIAlertAction) -> Void in
                                             
                                             let textField = alert2.textFields!.first
-                                            searchEntry = textField!.text!
-                                            print(searchEntry)
+                                            filterentry = textField!.text!
                                             self.apiFilter()
                                             self.table.reloadData()
         })
@@ -58,6 +60,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func search(_ sender: AnyObject) {
         
+        control = 1
         
         let alert = UIAlertController(title: "Place Search",
                                       message: "Write the specific type for places",
@@ -87,11 +90,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         present(alert, animated: true, completion: nil)
         
+        
     }
     
-    func apiConnection(){
+    private func apiConnection(){
         
-        places.remove(at: 0)
+        if places.count == 1 && places[0].count == 0 {
+            places.remove(at: 0)
+        }
+
         
         let url = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.406566,%20-2.966531&radius=1000&type=\(searchEntry)&keyword=establishment&key=AIzaSyDTh2Pj5a3p2f5fjWXRg8rpOWraXd9VDiU")!
         
@@ -105,14 +112,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     do {
                         let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
                        
+                       
                         if let firstArray = jsonResult["results"] as? NSArray {
-                            for i in 0...firstArray.count/2{
+                             for i in 0...firstArray.count/2{
                                 if let secondArray = (firstArray[i] as? NSDictionary) {
                                     let name = secondArray["name"] as? String
                                     let vicinity = secondArray["vicinity"] as? String
                                     let icon = secondArray["icon"] as? String
                                     let rating = secondArray["rating"] as? Double
-                                    print(rating)
                                     
                                     let lat2 = (secondArray["geometry"] as? NSDictionary)
                                     let lat1 = lat2?["location"] as? NSDictionary
@@ -150,7 +157,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    func apiFilter()  {
+    
+    private func apiFilter()  {
+        
+        places.remove(at: 0)
         
         let url = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.406566,%20-2.966531&radius=1000&type=\(searchEntry)&keyword=\(filterentry)&key=AIzaSyDTh2Pj5a3p2f5fjWXRg8rpOWraXd9VDiU")!
         
@@ -165,12 +175,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
                         
                         if let firstArray = jsonResult["results"] as? NSArray {
-                            for i in 0...firstArray.count/2{
+                            for i in 0...firstArray.count-1{
                                 if let secondArray = (firstArray[i] as? NSDictionary) {
                                     let name = secondArray["name"] as? String
                                     let vicinity = secondArray["vicinity"] as? String
+                                    let icon = secondArray["icon"] as? String
                                     let rating = secondArray["rating"] as? Double
-                                    print(rating)
+                        
                                     
                                     let lat2 = (secondArray["geometry"] as? NSDictionary)
                                     let lat1 = lat2?["location"] as? NSDictionary
@@ -180,7 +191,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                     let lon1 = lon2?["location"] as? NSDictionary
                                     let lon = lon1?["lng"] as? Double
                                     
-                                    self.places.append(["name": name!, "vicinity": vicinity!])
+                                    self.places.append(["name": name!, "vicinity": vicinity!, "icon": icon!])
                                     print(self.places)
                                     self.table.reloadData()
                                     
@@ -237,10 +248,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     override func viewDidAppear(_ animated: Bool) {
-        if (searchEntry != "" ){
-             apiConnection()
+        if control == 1 {
+            apiConnection()
         }
-       
+        if control == 2 {
+            apiFilter()
+        }
+        print(places)
         table.reloadData()
     }
  
