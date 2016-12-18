@@ -21,16 +21,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var locationManager = CLLocationManager()
     var places = [Dictionary<String, String>()]
   
-
     @IBOutlet weak var map: MKMapView!
     
     @IBOutlet weak var table: UITableView!
     
     @IBAction func filter(_ sender: AnyObject) {
         
-        let alert2 = UIAlertController(title: "Fiter Search",
-                                      message: "Write the specific key for places",
-                                      preferredStyle: .alert)
+        let alert2 = UIAlertController(title: "Filter ",
+                                       message: "Write the specific key for places",
+                                       preferredStyle: .alert)
         
         let filterAction = UIAlertAction(title: "Filter",
                                          style: .default,
@@ -55,7 +54,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert2.addAction(cancelAction)
         
         present(alert2, animated: true, completion: nil)
-        
     }
     
     @IBAction func search(_ sender: AnyObject) {
@@ -136,9 +134,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                     self.table.reloadData()
  
                                 }
-                                
                             }
-                            
                         }
                         
     
@@ -196,11 +192,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                     self.table.reloadData()
                                     
                                 }
-                                
                             }
-                            
                         }
-                        
                         
                     } catch {
                         print("======\nJSON processing Failed\n=======")

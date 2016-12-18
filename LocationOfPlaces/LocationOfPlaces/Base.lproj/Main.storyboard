@@ -46,17 +46,17 @@
                                             <action selector="search:" destination="BYZ-38-t0r" id="7Vt-5w-dFI"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" id="cU1-T7-Pw2">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tDj-hx-KTt">
-                                            <rect key="frame" x="44" y="7" width="276" height="30"/>
+                                    <barButtonItem style="plain" id="IoZ-Hn-nnW">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cXQ-xM-342">
+                                            <rect key="frame" x="44" y="7" width="256" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Filter"/>
+                                            <connections>
+                                                <action selector="filter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gjl-5d-way"/>
+                                            </connections>
                                         </button>
-                                        <connections>
-                                            <action selector="filter:" destination="BYZ-38-t0r" id="q5e-iq-yg8"/>
-                                        </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="refresh" id="fWD-bw-iy3"/>
+                                    <barButtonItem style="plain" systemItem="refresh" id="ueg-gg-RKd"/>
                                 </items>
                             </toolbar>
                         </subviews>
