@@ -33,7 +33,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vns-UC-wHl" id="5MZ-hL-R16">
-                                            <frame key="frameInset" width="375" height="44"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -46,6 +46,14 @@
                                             <action selector="search:" destination="BYZ-38-t0r" id="7Vt-5w-dFI"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" id="cU1-T7-Pw2">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tDj-hx-KTt">
+                                            <rect key="frame" x="44" y="7" width="276" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Filter"/>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="refresh" id="fWD-bw-iy3"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -71,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="324" y="-321"/>
+            <point key="canvasLocation" x="324" y="-321.58920539730138"/>
         </scene>
         <!--Place Details View Controller-->
         <scene sceneID="RA7-eY-8Ns">

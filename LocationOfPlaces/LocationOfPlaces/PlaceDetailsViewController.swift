@@ -19,6 +19,10 @@ class PlaceDetailsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+       placeInfo.text = infoString
+
+        /*
+        
         let url = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.406566,%20-2.966531&radius=500&type=store&keyword=\(searchEntry)&key=%20AIzaSyD_SvOcCekOkV67k4TGtw-7Q8gMS4KUPfU")!
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -62,6 +66,7 @@ class PlaceDetailsViewController: UIViewController {
         }
         
         task.resume()
+    */
     }
 
     override func didReceiveMemoryWarning() {

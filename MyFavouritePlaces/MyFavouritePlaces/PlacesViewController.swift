@@ -23,15 +23,11 @@ class PlacesViewController: UITableViewController {
     @IBOutlet weak var barItem: UIBarButtonItem!
     
     @IBAction func addItem(_ sender: AnyObject) {
-        print("Helloooooo")
         
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
     }
 
@@ -109,7 +105,7 @@ class PlacesViewController: UITableViewController {
         var itemToMove = places[fromIndexPath.row]
         places.remove(at: fromIndexPath.row)
         places.insert(itemToMove, at: toIndexPath.row)
-        
+        table.reloadData()
 
     }
     

@@ -55,7 +55,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
        // let place = Place(context: context)
         
       //  let newPin = NSEntityDescription.insertNewObject(forEntityName: "Place", into: context!)
-
         
         
         if gestureRecognizer.state == UIGestureRecognizerState.began {
