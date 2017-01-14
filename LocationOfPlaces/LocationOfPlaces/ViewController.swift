@@ -315,6 +315,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 
 }
+
+
 extension ViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
