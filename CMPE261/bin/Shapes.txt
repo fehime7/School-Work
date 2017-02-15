@@ -1,3 +1,0 @@
-circle 100 100 50
-square 300 300 50  
-circle 50 50 150
