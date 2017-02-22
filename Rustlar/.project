@@ -14,4 +14,26 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>images/Black_Horse.png</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Desktop/Black_Horse.png</locationURI>
+		</link>
+		<link>
+			<name>src/Black_Horse.png</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Desktop/Black_Horse.png</locationURI>
+		</link>
+		<link>
+			<name>src/Black_Pawn.png</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Desktop/Black_Pawn.png</locationURI>
+		</link>
+		<link>
+			<name>src/White_Pawn.png</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Desktop/White_Pawn.png</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

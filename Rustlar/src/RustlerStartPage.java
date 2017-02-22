@@ -5,14 +5,15 @@ import javax.swing.*;
 
 
 
-public class RustlarStartPage extends JFrame{
+public class RustlerStartPage extends JFrame{
 	
 	JLabel firstPlayer, secondPlayer;
 	JRadioButton computerPlayer1, humanPlayer1, computerPlayer2, humanPlayer2;
 	ButtonGroup group1, group2;
 	JButton goButton;
+	Player whitePlayer, blackPlayer;
 	
-	public RustlarStartPage(){
+	public RustlerStartPage(){
 		
 		setSize(450, 250);
 		setTitle("Rustlar Game");
@@ -65,15 +66,36 @@ public class RustlarStartPage extends JFrame{
 				   computerPlayer1.isSelected() && humanPlayer2.isSelected() ||
 				   humanPlayer1.isSelected() && computerPlayer2.isSelected() ||
 				   humanPlayer1.isSelected() && humanPlayer2.isSelected()) {
-					new RustlarInterface();
+					new RustlerInterface();
+				    
 				}
+			
 				else {
 					Object [] arr={"Close"};
 					
 					int n=JOptionPane.showOptionDialog(null, "Select one option for each player", "Rustlar",JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE,null, arr, arr[0]); 
 				}
 				
+				if (computerPlayer1.isSelected()){
+					whitePlayer.setHuman(false);
+					whitePlayer.setPlayerOrder(1);
+					
+				}else if (computerPlayer2.isSelected()){
+					blackPlayer.setHuman(false);
+					blackPlayer.setPlayerOrder(2);
 				
+				}else if (humanPlayer1.isSelected()){
+					whitePlayer.setHuman(true);
+					whitePlayer.setPlayerOrder(1);
+				
+				}else if (humanPlayer2.isSelected()){
+					blackPlayer.setHuman(true);
+					blackPlayer.setPlayerOrder(2);
+					
+				
+				}
+				
+									
 			}
 		});
 
@@ -90,7 +112,7 @@ public class RustlarStartPage extends JFrame{
 		setVisible(true);
 	}
 	public static void main(String[] args) {
-		RustlarStartPage rustlarStart= new RustlarStartPage();
+		RustlerStartPage rustlarStart= new RustlerStartPage();
 	}
 
 }
