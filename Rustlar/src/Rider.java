@@ -13,8 +13,9 @@ public class Rider extends Piece {
 			
 	}
 
+	/*
 	@Override
-	public ArrayList<Cell> move(Cell[][] state, int x, int y) {
+	public ArrayList<Cell> move2 (Cell[][] state, int x, int y) {
 		
 		possibleMoves.clear();
 		
@@ -55,6 +56,76 @@ public class Rider extends Piece {
 			if((y<7)&&(state[x+1][y+1].getPiece()!=null)&&(state[x+1][y+1].getPiece().getColor()!=this.getColor()))
 				possibleMoves.add(state[x+1][y+1]);
 		}
+		return possibleMoves;
+	}
+	*/
+	
+	public ArrayList<Cell> move(Cell [][] state, int x, int y){
+		
+		possibleMoves.clear();
+		
+		if(getColor()==0 || getColor()==1){
+			//Defining a possible move for each cell. Because For each position they move differently 
+			if((x==0 && y==2) || (x==2 && y==0)){ // Position 0,2 - 2,0
+				if((state[x][y+1].getPiece()==null) || (state[x+1][y].getPiece()==null)){
+					possibleMoves.add(state[x][y+1]);
+					possibleMoves.add(state[x+1][y]);
+				}
+					
+			}
+			if((x==0 && y==3) || (x==2 && y==1) || (x==2 && y==5)){ // Position 0,3 - 2,1 - 2,5
+				if(state[x][y-1].getPiece()==null)
+					possibleMoves.add(state[x][y-1]);
+				else if(state[0][y+1].getPiece()==null)
+					possibleMoves.add(state[x][y+1]);
+				else if(state[x+1][y].getPiece()==null)
+					possibleMoves.add(state[x+1][y]);
+			}
+			if((x==0 && y==4) || (x==2 && y==6)){ // Position 0,4 - 2,6
+				if(state[x][y-1].getPiece()==null)
+					possibleMoves.add(state[x][y-1]);
+				else if(state[x+1][y].getPiece()==null)
+					possibleMoves.add(state[x+1][y]);
+			}
+			if((x==1 && y==2) || (x==3 && y==0) || (x==5 && y==2)){ // Position 1,2 - 3,0 - 5,2
+				if(state[x-1][y].getPiece()==null)
+					possibleMoves.add(state[x-1][y]);
+				else if(state[x][y+1].getPiece()==null)
+					possibleMoves.add(state[x][y+1]);
+				else if(state[x+1][y].getPiece()==null)
+					possibleMoves.add(state[x+1][y]);
+			}
+			if((x==1 && y==4) || (x==3 && y==6) || (x==5 && y==4)){ // Position 1,4 - 3,6 - 5,4
+				if(state[x-1][y].getPiece()==null)
+					possibleMoves.add(state[x-1][y]);
+				else if(state[x+1][y].getPiece()==null)
+					possibleMoves.add(state[x+1][y]);
+				else if(state[x][y-1].getPiece()==null)
+					possibleMoves.add(state[x][y-1]);
+			}
+			if((x==4 && y==0) || (x==2 && y==6)){ // Position 4,0 - 6,2
+				if(state[x-1][y].getPiece()==null)
+					possibleMoves.add(state[x-1][y]);
+				else if(state[x][y+1].getPiece()==null)
+					possibleMoves.add(state[x][y+1]);
+			}
+			if((x==4 && y==1) || (x==6 && y==3) || (x==4 && y==5)){ // Position 4,1- 4,5 - 6,3
+				if(state[x][y-1].getPiece()==null)
+					possibleMoves.add(state[x][y-1]);
+				else if(state[x][y+1].getPiece()==null)
+					possibleMoves.add(state[x][y+1]);
+				else if(state[x-1][y].getPiece()==null)
+					possibleMoves.add(state[x-1][y]);
+			}
+			if((x==4 && y==6) || (x==6 && y==4)){ // Position 4,6 - 6,4
+				if(state[x][y-1].getPiece()==null)
+					possibleMoves.add(state[x][y-1]);
+				else if(state[x-1][y].getPiece()==null)
+					possibleMoves.add(state[x-1][y]);
+			}
+			
+		}
+		
 		return possibleMoves;
 	}
 

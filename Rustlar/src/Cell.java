@@ -74,6 +74,13 @@ public class Cell extends JPanel implements Cloneable{
 		//content=new JLabel(new ImageIcon("/Users/fggi/Desktop/Black_Knight.png"));
 		this.add(content);
 	}
+	public void setX(int x){
+		this.x=x;
+	}
+	
+	public void setY(int y){
+		this.y=y;
+	}
 	
 	public void removePiece()      //Function to remove a piece from the cell
 	{

@@ -34,7 +34,7 @@ public class RustlerInterface extends JFrame implements MouseListener{
 		wr2 = new Rider("WR2", "White_Pawn.png", 0);
 		wr3 = new Rider("WR3", "White_Pawn.png", 0);
 		wr4 = new Rider("WR4", "White_Pawn.png", 0);
-		//wh = new Horse("WH", "White_Horse.png", 0);
+		wh = new Horse("WH", "White_Horse.png", 0);
 		br1 = new Rider("BR1", "Black_Pawn.png", 1);
 		br2 = new Rider("BR2", "Black_Pawn.png", 1);
 		br3 = new Rider("BR3", "Black_Pawn.png", 1);
@@ -129,17 +129,24 @@ public class RustlerInterface extends JFrame implements MouseListener{
 		
 	}	
 	
-	 private void cleandestinations(ArrayList<Cell> destlist)      //Function to clear the last move's destinations
+	  // It checks if the horse of given color is captured. If true then the game is finished and other player wins 
+	  public boolean isSurraunded(int color){
+		  
+		  
+		return false;  
+	  }
+	
+	 private void cleanDestinations(ArrayList<Cell> destList)      //Function to clear the last move's destinations
 	    {
-	    	ListIterator<Cell> it = destlist.listIterator();
+	    	ListIterator<Cell> it = destList.listIterator();
 	    	while(it.hasNext())
 	    		it.next().removePossibleDestination();
 	    }
 	 
 	//A function that indicates the possible moves by highlighting the Cells
-	    private void highlightdestinations(ArrayList<Cell> destlist)
+	    private void highlightDestinations(ArrayList<Cell> destList)
 	    {
-	    	ListIterator<Cell> it = destlist.listIterator();
+	    	ListIterator<Cell> it = destList.listIterator();
 	    	while(it.hasNext())
 	    		it.next().setPossibleDestination();
 	    }
@@ -151,6 +158,69 @@ public class RustlerInterface extends JFrame implements MouseListener{
 		// TODO Auto-generated method stub
 		
 		c=(Cell)e.getSource();
+		if (previous==null)
+		{
+			if(c.getPiece()!=null)
+			{
+				c.select();
+				previous=c;
+				destinationlist.clear();
+				destinationlist=c.getPiece().move(boardState, c.x, c.y);
+				
+			}
+			if(c.getPiece() instanceof Horse)
+				return;
+				//destinationlist=filterDestination(destinationlist,c);
+			else
+			{
+				/*
+				if(boardState[getHorse(chance).getx()][getKing(chance).gety()].ischeck())
+					destinationlist = new ArrayList<Cell>(filterdestination(destinationlist,c));
+				else if(destinationlist.isEmpty()==false && willkingbeindanger(c,destinationlist.get(0)))
+					destinationlist.clear();
+				*/
+			}
+			highlightDestinations(destinationlist);
+		}	
+		else
+		{
+			if(c.x==previous.x && c.y==previous.y)
+			{
+				c.deselect();
+				cleanDestinations(destinationlist);
+				destinationlist.clear();
+				previous=null;
+				
+			}
+			else if(c.getPiece()==null || previous.getPiece().getColor()!=c.getPiece().getColor()) {	
+				if(c.isPossibleDestination()){
+					if(c.getPiece()!=null)
+						c.removePiece();
+					c.setPiece(previous.getPiece());
+					//c.setX(previous.getX());
+					//c.setY(previous.getY());
+					previous.removePiece();
+				}
+				if(previous!=null)
+				{
+					previous.deselect();
+					previous=null;
+				}
+				cleanDestinations(destinationlist);
+				destinationlist.clear();
+				
+			}else if(previous.getPiece().getColor()==c.getPiece().getColor())				
+			{	
+				previous.deselect();
+				cleanDestinations(destinationlist);
+				destinationlist.clear();
+				c.select();
+				previous=c;
+				destinationlist=c.getPiece().move(boardState, c.x, c.y);
+				
+			}
+			highlightDestinations(destinationlist);
+		}	
 		
 	}
 

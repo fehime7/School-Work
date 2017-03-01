@@ -79,6 +79,8 @@ public class RustlerGameDemo extends JFrame implements MouseListener, MouseMotio
   	panel.add(piece);
  
   }
+  
+
  
   public void mousePressed(MouseEvent e){
 	  gamePiece = null;
