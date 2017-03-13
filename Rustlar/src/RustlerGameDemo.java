@@ -47,34 +47,34 @@ public class RustlerGameDemo extends JFrame implements MouseListener, MouseMotio
  
   //Add pieces to the board
  
-  	JLabel piece = new JLabel( new ImageIcon("/Users/fggi/Desktop/Black_Pawn.png") );
+  	JLabel piece = new JLabel( new ImageIcon("/Users/fggi/Desktop/7th Semester Material/Black_Pawn.png") );
   	JPanel panel = (JPanel)rustlerBoard.getComponent(2);
   	panel.add(piece);
-  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/Black_Pawn.png"));
+  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/7th Semester Material/Black_Pawn.png"));
   	panel = (JPanel)rustlerBoard.getComponent(4);
   	panel.add(piece);
-  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/Black_Pawn.png"));
+  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/7th Semester Material/Black_Pawn.png"));
   	panel = (JPanel)rustlerBoard.getComponent(14);
   	panel.add(piece);
-  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/Black_Pawn.png"));
+  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/7th Semester Material/Black_Pawn.png"));
   	panel = (JPanel)rustlerBoard.getComponent(28);
   	panel.add(piece);
-  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/Black_Horse.png"));
+  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/7th Semester Material/Black_Horse.png"));
   	panel = (JPanel)rustlerBoard.getComponent(16);
   	panel.add(piece);
-  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/White_Pawn.png"));
+  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/7th Semester Material/White_Pawn.png"));
   	panel = (JPanel)rustlerBoard.getComponent(20);
   	panel.add(piece);
-  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/White_Pawn.png"));
+  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/7th Semester Material/White_Pawn.png"));
   	panel = (JPanel)rustlerBoard.getComponent(34);
   	panel.add(piece);
-  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/White_Pawn.png"));
+  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/7th Semester Material/White_Pawn.png"));
   	panel = (JPanel)rustlerBoard.getComponent(44);
   	panel.add(piece);
-  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/White_Pawn.png"));
+  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/7th Semester Material/White_Pawn.png"));
   	panel = (JPanel)rustlerBoard.getComponent(46);
   	panel.add(piece);
-  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/White_Horse.png"));
+  	piece = new JLabel(new ImageIcon("/Users/fggi/Desktop/7th Semester Material/White_Horse.png"));
   	panel = (JPanel)rustlerBoard.getComponent(32);
   	panel.add(piece);
  

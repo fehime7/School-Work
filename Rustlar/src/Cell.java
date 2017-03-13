@@ -1,4 +1,5 @@
 
+
 import java.awt.*;
 
 import javax.swing.*;
@@ -17,24 +18,24 @@ public class Cell extends JPanel implements Cloneable{
 	private boolean isPossibleDestination;
 	private JLabel content;
 	private Piece piece;
-	int x,y;                             //is public because this is to be accessed by all the other class
+	int xPoz,yPoz;                             //is public because this is to be accessed by all the other class
 	private boolean isSelected=false;
 	private boolean isActive;
 	
 	
 	//Constructors
-	public Cell(int x,int y,Piece p)
+	public Cell(int xPoz,int yPoz,Piece p)
 	{		
-		this.x=x;
-		this.y=y;
+		this.xPoz=xPoz;
+		this.yPoz=yPoz;
 		
 		setLayout(new BorderLayout());
 	
 	 
 		
-		if ((x<2 && x>-1 && y <2 && y>-1) || (x<7 && x>4 && y<2 && y>-1) || (x<2 && x>-1 && y<7 && y>4) || (x<7 && x>4 && y<7 && y>4) )
+		if ((xPoz<2 && xPoz>-1 && yPoz <2 && yPoz>-1) || (xPoz<7 && xPoz>4 && yPoz<2 && yPoz>-1) || (xPoz<2 && xPoz>-1 && yPoz<7 && yPoz>4) || (xPoz<7 && xPoz>4 && yPoz<7 && yPoz>4) )
 			setBackground(Color.WHITE);
-		else if((x+y)%2==0)
+		else if((xPoz+yPoz)%2==0)
 			setBackground(new Color(113,198,113));
 	
 		else
@@ -47,12 +48,12 @@ public class Cell extends JPanel implements Cloneable{
 	//A constructor that takes a cell as argument and returns a new cell will the same data but different reference
 	public Cell(Cell cell) throws CloneNotSupportedException
 	{
-		this.x=cell.x;
-		this.y=cell.y;
+		this.xPoz=cell.xPoz;
+		this.yPoz=cell.yPoz;
 		setLayout(new BorderLayout());
-		if((x+y)%2==0)
+		if((xPoz+yPoz)%2==0)
 			setBackground(new Color(113,198,113));
-		else if ((x<2 && x>-1 && y <2 && y>-1) || (x<7 && x>4 && y<2 && y>-1) || (x<2 && x>-1 && y<7 && y>4) || (x<7 && x>4 && y<7 && y>4) )
+		else if ((xPoz<2 && xPoz>-1 && yPoz <2 && yPoz>-1) || (xPoz<7 && xPoz>4 && yPoz<2 && yPoz>-1) || (xPoz<2 && xPoz>-1 && yPoz<7 && yPoz>4) || (xPoz<7 && xPoz>4 && yPoz<7 && yPoz>4) )
 			setBackground(Color.WHITE);
 		else
 			setBackground(Color.BLACK);
@@ -74,21 +75,18 @@ public class Cell extends JPanel implements Cloneable{
 		//content=new JLabel(new ImageIcon("/Users/fggi/Desktop/Black_Knight.png"));
 		this.add(content);
 	}
-	public void setX(int x){
-		this.x=x;
+	public void setXPoz(int xPoz){
+		this.xPoz=xPoz;
 	}
 	
-	public void setY(int y){
-		this.y=y;
+	public void setYPoz(int yPoz){
+		this.yPoz=yPoz;
 	}
 	
 	public void removePiece()      //Function to remove a piece from the cell
 	{
-		if (piece instanceof Rider)
-		{
 			piece=null;
 			this.remove(content);
-		}
 		
 	}
 	
@@ -131,6 +129,14 @@ public class Cell extends JPanel implements Cloneable{
 	{
 		return this.isPossibleDestination;
 	}
+
+	public int getXPoz() {
+		return xPoz;
+	}
+
+	public int getYPoz() {
+		return yPoz;
+	}
 	
 	/*
 	public void setcheck()     //Function to highlight the current cell as checked (For King)
@@ -155,3 +161,4 @@ public class Cell extends JPanel implements Cloneable{
 	}
 	*/
 }
+
