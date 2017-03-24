@@ -12,6 +12,7 @@ public class Horse extends Piece {
 			setColor(c);
 			
 	}
+	
 
 	/*
 	@Override

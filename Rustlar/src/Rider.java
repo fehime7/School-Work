@@ -12,6 +12,7 @@ public class Rider extends Piece {
 			setColor(c);
 			
 	}
+	
 
 	/*
 	

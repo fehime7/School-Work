@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -15,19 +16,46 @@ public class RustlerInterface extends JFrame implements MouseListener{
 	
 	static Rider br1,br2,br3,br4, wr1, wr2, wr3,wr4;
 	static Horse bh, wh;
-	Cell c, previous, horseCell;
+	Cell c, previous, horseCell, aiCell;
 	private int chance=0;
 	private Cell boardState[][];
-	private ArrayList<Cell> destinationlist = new ArrayList<Cell>();
+	public ArrayList<Cell> destinationlist = new ArrayList<Cell>();
 	private Player White=null,Black=null;
 	private boolean selected=false,end=false;
 	Player whitePlayer, blackPlayer, winner;
 	static String move;
 	private Player tempPlayer;
 	private JPanel board;
+	JLabel player1, player2, hwosTern;
+	MinMax mm ;
+	boolean didWhiteplayed=false;
 	
 	public static void main(String[] args) {
    
+		/*
+		wr1 = new Rider("WR1", "White_Pawn.png", 0);
+		wr2 = new Rider("WR2", "White_Pawn.png", 0);
+		wr3 = new Rider("WR3", "White_Pawn.png", 0);
+		wr4 = new Rider("WR4", "White_Pawn.png", 0);
+		wh = new Horse("WH", "White_Horse.png", 0);
+		br1 = new Rider("BR1", "Black_Pawn.png", 1);
+		br2 = new Rider("BR2", "Black_Pawn.png", 1);
+		br3 = new Rider("BR3", "Black_Pawn.png", 1);
+		br4 = new Rider("BR4", "Black_Pawn.png", 1);
+		bh = new Horse("BH", "Black_Horse.png", 1);
+		*/
+		RustlerInterface rustler=new RustlerInterface();
+		rustler.findHorse(0);
+		rustler.findHorse(1);
+	
+	}		
+	
+	public RustlerInterface(){
+		
+		
+		setSize(900,650);
+		setLayout(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		wr1 = new Rider("WR1", "White_Pawn.png", 0);
 		wr2 = new Rider("WR2", "White_Pawn.png", 0);
@@ -40,25 +68,12 @@ public class RustlerInterface extends JFrame implements MouseListener{
 		br4 = new Rider("BR4", "Black_Pawn.png", 1);
 		bh = new Horse("BH", "Black_Horse.png", 1);
 		
-		RustlerInterface rustler=new RustlerInterface();
-		rustler.findHorse(0);
-		rustler.findHorse(1);
-	
-	}		
-	
-	public RustlerInterface(){
-		
-		
-		setSize(800,650);
-		setLayout(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
 		Cell cell;
 		Piece P;
 		board=new JPanel(new GridLayout(7,7));
 		//board.setBorder(BorderFactory.createLoweredBevelBorder());
 		board.setBounds(0,0,600,600);
-		board.setLocation(20,0);
+		board.setLocation(20,20);
 		
 		boardState= new Cell [7][7];
 		
@@ -93,7 +108,23 @@ public class RustlerInterface extends JFrame implements MouseListener{
 				boardState[i][j]=cell;
 			}
 		
+		player1= new JLabel("Player 1: Human Player - White");
+		player1.setLocation(650, 50);
+		player1.setSize(200, 50);
+		
+		player2= new JLabel("Player 2: MinMax Player - Black");
+		player2.setLocation(650, 450);
+		player2.setSize(200, 50);
+		
+		hwosTern= new JLabel("Tern : White Player");
+		hwosTern.setLocation(650, 250);
+		hwosTern.setSize(200, 50);
+		
+		
 		add(board);
+		add(player1);
+		add(player2);
+		add(hwosTern);
 		setVisible(true);
 	}
 	
@@ -130,6 +161,18 @@ public class RustlerInterface extends JFrame implements MouseListener{
 		
 	}	
 	
+	public void makeRandomMove(){
+		Random r=new Random();
+		int x= r.nextInt(2);
+		int y= r.nextInt(2);
+		
+		aiCell = boardState[0][2];
+		boardState[x][y].setPiece(aiCell.getPiece());
+		//aiCell.removePiece();
+		
+	
+	}
+	
 	 public Cell findHorse(int color){
 		 
 		 for(int i=0; i<7; i++){
@@ -140,8 +183,7 @@ public class RustlerInterface extends JFrame implements MouseListener{
 				 }
 			 }
 		 }
-		 //System.out.println(horseCell.getXPoz());
-		 //System.out.println(horseCell.getYPoz());
+	
 		 return horseCell;
 	 }
 	
@@ -198,7 +240,7 @@ public class RustlerInterface extends JFrame implements MouseListener{
 		c=(Cell)e.getSource();
 		if (previous==null)
 		{
-			if(c.getPiece()!=null && c.getPiece().getColor()!=1)
+			if(c.getPiece()!=null && c.getPiece().getColor()!=1 && didWhiteplayed == false)
 			{
 				c.select();
 				previous=c;
@@ -232,12 +274,16 @@ public class RustlerInterface extends JFrame implements MouseListener{
 			}
 			else if(c.getPiece()==null || previous.getPiece().getColor()!=c.getPiece().getColor()) {	
 				if(c.isPossibleDestination()){
-					if(c.getPiece()!=null)
+					if(c.getPiece()!=null){
 						c.removePiece();
+					}
 					c.setPiece(previous.getPiece());
 					previous.removePiece();
+					didWhiteplayed=true;
+					hwosTern.setText("Turn : Black Player");
 					
 				}
+				
 				if(previous!=null)
 				{
 					previous.deselect();
@@ -245,6 +291,8 @@ public class RustlerInterface extends JFrame implements MouseListener{
 				}
 				cleanDestinations(destinationlist);
 				destinationlist.clear();
+				
+				
 				
 			}else if(previous.getPiece().getColor()==c.getPiece().getColor())				
 			{	
@@ -262,6 +310,7 @@ public class RustlerInterface extends JFrame implements MouseListener{
 			JOptionPane.showMessageDialog(null, "Game is finished.The winner is black player!!!");
 			System.out.println("isSurrounded works correct");
 			
+			
 
 		}
 		else if(isSurrounded(1)==true){
@@ -269,7 +318,14 @@ public class RustlerInterface extends JFrame implements MouseListener{
 			System.out.println("isSurrounded works correct");  
 
 		}
-		
+		if ( didWhiteplayed==true ){
+			makeRandomMove();
+			
+			//aiCell.setPiece(boardState[0][2].getPiece());
+			didWhiteplayed=false;
+			hwosTern.setText("Turn : White Player");
+					
+		}
 	}
 
 	@Override

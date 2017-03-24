@@ -53,6 +53,14 @@ public abstract class Piece implements Cloneable{
 		return this.color;
 	}
 	
+//	public String getType(){
+//		return type;
+//	}
+	/**
+	 * The draw method governs how to draw each piece
+	 * @param g
+	 */
+	
 	//Function to return the a "shallow" copy of the object. The copy has exact same variable value but different reference
 	public Piece getcopy() throws CloneNotSupportedException
 	{
