@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:layout_width="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" PATIENT INFORMATION PAGE"
+                android:textSize="25dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/p_mail"
+                android:layout_width="wrap_content"
+                android:text="Patient Mail"
+                android:textSize="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:id="@+id/p_id"
+                android:layout_width="wrap_content"
+                android:text="Patient ID"
+                android:textSize="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/p_name"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Patient Name"
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/p_phone"
+                android:layout_width="wrap_content"
+                android:text="Patient Phone Number"
+                android:textSize="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/p_bloodtype"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Patient Blood Type"
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Patient Surgeries="
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/patientSurgery"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Patient Surgery" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Patient Medicines="
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/patientMedicine"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Patient Medicines" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Patient Doctor="
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/patientDoctor"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Patient Doctor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Patient Conditions="
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/patientConditions"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Patient Conditions" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Patient Notes="
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/patientNotes"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Patient Notes" />
+
+            <Button
+                android:id="@+id/afterQRLogin"
+                android:text="Update Patient Information "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>
+
+

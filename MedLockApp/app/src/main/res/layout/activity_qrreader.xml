@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    >
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome,"
+        android:textSize="30dp"/>
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Doctor name will be here"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Press The Button Below. Show QR-Code of Patient Through Camera"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/qrReader"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:text="QR Reader"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Patient Mail"
+        android:textSize="20dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/patientID"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"/>
+
+
+    <Button
+        android:id="@+id/afterQRLogin"
+        android:text="See Patient Information "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+     </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>
+
